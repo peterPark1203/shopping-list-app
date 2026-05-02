@@ -104,6 +104,12 @@
       transition: color 0.2s;
     }
 
+    .item-date {
+      font-size: 0.75rem;
+      color: #a0aec0;
+      flex-shrink: 0;
+    }
+
     li.checked .item-text {
       text-decoration: line-through;
       color: #a0aec0;
@@ -215,6 +221,10 @@
         span.className = 'item-text';
         span.textContent = item.text;
 
+        const date = document.createElement('span');
+        date.className = 'item-date';
+        date.textContent = new Date(item.created_at).toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
+
         const del = document.createElement('button');
         del.className = 'del-btn';
         del.title = '삭제';
@@ -226,6 +236,7 @@
 
         li.appendChild(cb);
         li.appendChild(span);
+        li.appendChild(date);
         li.appendChild(del);
         list.appendChild(li);
       });
